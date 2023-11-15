@@ -5,9 +5,11 @@ Simple password generator. It takes three entries from the user:
 - A easy-to-remember password
 - Some optional information to be used as salt
 
-The software combines the entries into a single string and use SHA256 as a hashing algorithm to generate another password, longer and a bit stronger. Aditionally, user can set a upper limit to the length of the password (because some websites limit it anyways.)
+The script combines the entries into a single string and uses SHA256 as a hashing algorithm to generate another password, longer and a bit stronger. Aditionally, user can set a upper limit to the length of the password (because some websites limit it anyways.)
 
-Some examples:
+You can check it out [clicking here](https://purplechoc.streamlit.app/)
+
+Example:
 
 User enters:
 ```
