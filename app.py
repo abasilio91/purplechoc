@@ -70,8 +70,8 @@ options = {
 }
 
 st.text_input('Site da senha', key="target")
-st.text_input('Digite uma senha fácil de lembrar', key="password")
-st.text_input('Digite uma informação extra que deseja colocar na senha. Pode deixar em branco', key="salt")
+st.text_input('Digite uma senha fácil de lembrar', key="password", type="password")
+st.text_input('Digite uma informação extra que deseja colocar na senha. Pode deixar em branco', key="salt", type="password")
 
 password = st.session_state.password
 target = st.session_state.target
