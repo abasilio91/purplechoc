@@ -24,4 +24,4 @@ svd0B7Qfsi0lmhX1PZ1CZEC8cyjta6c90H5iuJPWZNE=
 ```
 
 ## Next steps:
-- [ ] Make it so the final result also contain symbols
+- [X] Make it so the final result also contain symbols
