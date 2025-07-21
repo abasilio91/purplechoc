@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Purple Choc - Encriptador de senhas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>{{ titulo }}</h1>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %} 
+                <ul id="messages" class="list-unstyled">
+                {% for message in messages %}
+                    <li class="alert alert-success">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('processa') }}" method="post">
+            <button type="button" onclick="togglePanel()">Mostrar opções</button>
+
+            <div class="painel-opcoes" id="painel-opcoes">
+                <label>Tamanho da senha: </label>
+                <span id="tamanho-valor">44</span>
+                <input type="range" name="tamanho" min="6" max="44" step="1" value="{{ tamanho }}" class="form-range"
+                    id="painel-tamanho">
+                <div class="slider-valores">
+                    <span id="valor-min">6</span>
+                    <span id="valor-max">44</span>
+                </div>
+                <div>
+                    <label>Incluir letras Maiúsculas</label>
+                    <input type="checkbox" name="maiusculas" value="True" class="form-check-input" checked>
+                </div>
+                <div>
+                    <label>Incluir letras Minúsculas</label>
+                    <input type="checkbox" name="minusculas" value="True" class="form-check-input" checked>
+                </div>
+                <div>
+                    <label>Incluir Números</label>
+                    <input type="checkbox" name="numeros" value="True" class="form-check-input" checked>
+                </div>
+                <div>
+                    <label>Incluir Símbolos</label>
+                    <input type="checkbox" name="simbolos" value="True" class="form-check-input" checked>
+                </div>
+            </div>
+
+            <fieldset>
+                <div class="form-group">
+                    <label>Site</label>
+                    <input type="text" , id="site" , name="site" , class="form-control" value="{{ site }}" required
+                        placeholder="Informe o site que está pedindo a senha">
+                </div>
+                <div class="form-group">
+                    <label>Primeira senha</label>
+                    <input type="password" , id="senha" , name="senha" , class="form-control" value="{{ senha }}" required
+                        placeholder="Digite uma senha fácil de lembrar" >
+                </div>
+                <div class="form-group">
+                    <label>Segunda senha</label>
+                    <input type="password" , id="salt" , name="salt" , class="form-control" value="{{ salt }}"
+                        placeholder="Digite uma segunda senha fácil de lembrar (pode deixar em branco)">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Gerar senha forte</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <script>
+        const panel = document.getElementById('painel-opcoes');
+        function togglePanel() {
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        };
+    </script>
+
+    <script>
+        const slider = document.getElementById('painel-tamanho')
+        const valor = document.getElementById('tamanho-valor')
+
+        function atualizaPosicaoHandler() {
+            const sliderWidth = slider.offsetWidth
+            const min = parseInt(slider.min)
+            const max = parseInt(slider.max)
+            const val = parseInt(slider.value)
+
+            const percent = (val - min) / (max - min)
+            const offset = percent * sliderWidth
+
+            valor.textContent = val
+            valor.style.left = `${offset} px`
+        }
+
+        slider.addEventListener('input', atualizaPosicaoHandler)
+        window.addEventListener('load', atualizaPosicaoHandler)
+
+    </script>
+
+</body>
+
+</html>
