@@ -15,16 +15,16 @@
         </div>
 
         {% with messages = get_flashed_messages() %}
-            {% if messages %} 
-                <ul id="messages" class="list-unstyled">
-                {% for message in messages %}
-                    <li class="alert alert-success">{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
+        {% if messages %}
+        <ul id="messages" class="list-unstyled">
+            {% for message in messages %}
+            <li class="alert alert-success">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         {% endwith %}
-
-        <form action="{{ url_for('processa') }}" method="post">
+        
+        <form method="post" id="dados-entrada">
             <button type="button" onclick="togglePanel()">Mostrar opções</button>
 
             <div class="painel-opcoes" id="painel-opcoes">
@@ -62,8 +62,8 @@
                 </div>
                 <div class="form-group">
                     <label>Primeira senha</label>
-                    <input type="password" , id="senha" , name="senha" , class="form-control" value="{{ senha }}" required
-                        placeholder="Digite uma senha fácil de lembrar" >
+                    <input type="password" , id="senha" , name="senha" , class="form-control" value="{{ senha }}"
+                        required placeholder="Digite uma senha fácil de lembrar">
                 </div>
                 <div class="form-group">
                     <label>Segunda senha</label>
@@ -75,37 +75,10 @@
                 </div>
             </fieldset>
         </form>
+        <h4>Sua senha criptografada é: </h4>
+        <div id='saida'></div>
     </div>
-
-    <script>
-        const panel = document.getElementById('painel-opcoes');
-        function togglePanel() {
-            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        };
-    </script>
-
-    <script>
-        const slider = document.getElementById('painel-tamanho')
-        const valor = document.getElementById('tamanho-valor')
-
-        function atualizaPosicaoHandler() {
-            const sliderWidth = slider.offsetWidth
-            const min = parseInt(slider.min)
-            const max = parseInt(slider.max)
-            const val = parseInt(slider.value)
-
-            const percent = (val - min) / (max - min)
-            const offset = percent * sliderWidth
-
-            valor.textContent = val
-            valor.style.left = `${offset} px`
-        }
-
-        slider.addEventListener('input', atualizaPosicaoHandler)
-        window.addEventListener('load', atualizaPosicaoHandler)
-
-    </script>
-
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 
 </html>

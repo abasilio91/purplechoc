@@ -1,4 +1,4 @@
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, redirect, url_for, jsonify
 
 from models.encriptador import Encriptador
 from models.opcoes import Opcoes
@@ -24,4 +24,4 @@ def processa(opcoes: dict=None):
     senha_crypt = Encriptador.gera_senha_criptografada(site, senha_original, salt, opcoes)
     senha_crypt = Encriptador.vigenere(senha_crypt, salt, opcoes)
 
-    return redirect(url_for('index'))
+    return jsonify({'resultado': senha_crypt})
