@@ -34,6 +34,5 @@ class Characteres:
                 characteres_validos.append(chave())
                 
         lista_achatada = [val for sublista in characteres_validos for val in sublista]
-        print(lista_achatada)
         random.Random(42).shuffle(lista_achatada)
         return lista_achatada, len(lista_achatada)

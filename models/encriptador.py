@@ -12,7 +12,6 @@ class Encriptador:
         iter = 500_000
         original_key = b64encode(bytes(f'{site+senha+salt}', 'utf-8'))
         enc_key = pbkdf2_hmac('sha256', original_key, bytes(f'{salt}', 'utf-8') * 2, iter)
-        print(f'--- { b64encode(enc_key).decode("utf-8")[:opcoes[0]] } ----')
         return b64encode(enc_key).decode("utf-8")[:opcoes[0]]
     
     def vigenere(senha: str, chave: str="ASdh3729¨!8290AH7", opcoes: dict=None) -> str:
