@@ -12,6 +12,7 @@ class Encriptador:
         iter = 500_000
         original_key = b64encode(bytes(f'{site+senha+salt}', 'utf-8'))
         enc_key = pbkdf2_hmac('sha256', original_key, bytes(f'{salt}', 'utf-8') * 2, iter)
+        print(f'--- { b64encode(enc_key).decode("utf-8")[:opcoes[0]] } ----')
         return b64encode(enc_key).decode("utf-8")[:opcoes[0]]
     
     def vigenere(senha: str, chave: str="ASdh3729¨!8290AH7", opcoes: dict=None) -> str:
@@ -19,14 +20,14 @@ class Encriptador:
             opcoes = Opcoes().get_opcoes()
 
         if len(chave) < len(senha):
-            chave += chave
+            chave += senha
         chave = chave[:len(senha)]
         
         lista_characteres_validos, len_characteres_validos = Characteres().lista_characteres_validos(opcoes)
         lista_characteres_totais, _ = Characteres().lista_characteres_validos()
         cifra = ""
         for senha_char, chave_char in zip(senha, chave):
-            index_senha = lista_characteres_validos.index(senha_char)
+            index_senha = lista_characteres_totais.index(senha_char)
             index_chave = lista_characteres_totais.index(chave_char)
             offset = (index_senha + index_chave) % len_characteres_validos
             cifra += lista_characteres_validos[offset]

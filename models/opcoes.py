@@ -12,10 +12,12 @@ class Opcoes:
         self.optin_simbolos = optin_simbolos
 
     def get_opcoes(self) -> list:
-        opcoes = [self.optin_tamanho, 
-                  self.optin_maiusculas, 
-                  self.optin_minusculas, 
-                  self.optin_numeros, 
-                  self.optin_simbolos]
+        opcoes = [
+            self.optin_tamanho,
+            self.optin_maiusculas,
+            self.optin_minusculas,
+            self.optin_numeros,
+            self.optin_simbolos
+        ]
 
         return opcoes

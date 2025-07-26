@@ -7,7 +7,6 @@ window.addEventListener('load', function () {
     atualizaPosicaoHandler();
 });
 
-
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
@@ -28,10 +27,9 @@ window.addEventListener('load', function () {
     });
 });
 
-
 const panel = document.getElementById('painel-opcoes');
 function togglePanel() {
-    panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
 };
 
 const slider = document.getElementById('painel-tamanho')

@@ -13891,7 +13891,7 @@ fieldset:disabled .btn {
 /*# sourceMappingURL=bootstrap.css.map */
 
 .painel-opcoes {
-  display: block;
+  display: none;
   transition: all 0.3s ease;
   background-color: #f1f1f1;
   padding: 20px;
